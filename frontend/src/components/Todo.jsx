@@ -9,13 +9,13 @@ function Todo() {
   const [edittask, setEdittask] = useState('');
 
   useEffect(() => {
-    axios.get('http://localhost:3200/todo')
+    axios.get('https://mern-todo-backend-zwxl.onrender.com/todo')
       .then(response => setTodos(response.data))
       .catch(error => console.log(error));
   }, []);
 
   const addTodo = () => {
-    axios.post('http://localhost:3200/todo', {task})
+    axios.post('https://mern-todo-backend-zwxl.onrender.com/todo', {task})
       .then(response => setTodos([...todos, response.data]))
       .then(alert("added"))
       .catch(error => console.log(error));
@@ -28,7 +28,7 @@ function Todo() {
   };
 
   const updateTodo = () => {
-    axios.put(`http://localhost:3200/todo/${editId}`, { task: edittask })
+    axios.put(`https://mern-todo-backend-zwxl.onrender.com/todo/${editId}`, { task: edittask })
       .then(response => {
         setTodos(todos.map(todo => todo._id === editId ? response.data : todo));
         setEditId(null);
@@ -39,7 +39,7 @@ function Todo() {
   };
 
   const deleteTodo = id => {
-    axios.delete(`http://localhost:3200/todo/${id}`)
+    axios.delete(`https://mern-todo-backend-zwxl.onrender.com/todo/${id}`)
       .then(() => setTodos(todos.filter(todo => todo._id !== id)))
       .then(alert("deleted"))
       .catch(error => console.log(error));
